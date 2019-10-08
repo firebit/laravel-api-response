@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Firebit\\laravel\\ApiResponse\\": "src/"
+      "Firebit\\Laravel\\ApiResponse\\": "src/"
     }
   }
 }
