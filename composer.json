@@ -1,0 +1,20 @@
+{
+  "name": "firebit/laravel-api-response",
+  "description": "",
+  "homepage": "https://firebit.nl",
+  "authors": [
+    {
+      "name": "Jordy Alkema",
+      "email": "jordy@firebit.nl"
+    }
+  ],
+  "require": {
+    "php": ">=7",
+    "phpunit/phpunit": "^8.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Firebit\\laravel\\ApiResponse\\": "src/"
+    }
+  }
+}
