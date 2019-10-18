@@ -10,8 +10,8 @@
   ],
   "require": {
     "php": ">=7",
-    "illuminate/http": "^5.5",
-    "phpunit/phpunit": "^8.4"
+    "illuminate/http": ">=5.5",
+    "phpunit/phpunit": ">=8.4"
   },
   "autoload": {
     "psr-4": {
