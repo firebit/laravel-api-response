@@ -1,7 +1,8 @@
 {
   "name": "firebit/laravel-api-response",
-  "description": "",
+  "description": "Simple Laravel package for creating API responses, compliant with JSend and the HTTP standard.",
   "homepage": "https://firebit.nl",
+  "license": "MIT",
   "authors": [
     {
       "name": "Jordy Alkema",
