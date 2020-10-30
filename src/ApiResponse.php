@@ -13,6 +13,9 @@ class ApiResponse extends Response {
     // Holds the optional error message (in case of a 'error')
     protected $errorMessage;
 
+    // Hold the data
+    protected $data;
+
 
     /**
      * Sends content for the current web response.
@@ -41,21 +44,27 @@ class ApiResponse extends Response {
         // Create an empty response
         $response = null;
 
+        if (method_exists($this->data, '__toString') || is_scalar($this->data)){
+            $response_data = $this->data;
+        }else{
+            $response_data = json_encode($this->data);
+        }
+
         // If response is successful
         if($this->isSuccessful()){
             $response = [
                 'status' => 'success',
-                'data' => $this->getOriginalContent(),
+                'data' => $response_data,
             ];
 
-        // If reponse is a client error
+            // If reponse is a client error
         }elseif ($this->isClientError()){
             $response = [
                 'status' => 'fail',
-                'data' => $this->getOriginalContent(),
+                'data' => $response_data,
             ];
 
-        // If response is a server error
+            // If response is a server error
         }elseif ($this->isServerError()){
             $response = [
                 'status' => 'error',
@@ -69,7 +78,7 @@ class ApiResponse extends Response {
 
             // Optional data
             if($this->getOriginalContent()){
-                $response['data'] = $this->getOriginalContent();
+                $response['data'] = $response_data;
             }
 
         }
@@ -95,5 +104,18 @@ class ApiResponse extends Response {
         $this->errorMessage = $errorMessage;
 
         return $this;
+    }
+
+    /**
+     * @param string|null $content
+     * @param int $status
+     * @param array $headers
+     * @return ApiResponse|void
+     */
+    public static function create($content = '', int $status = 200, array $headers = []){
+        $response = new ApiResponse($content, $status, $headers);
+        $response->data = $content;
+
+        return $response;
     }
 }
